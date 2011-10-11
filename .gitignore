@@ -1,0 +1,15 @@
+# IntelliJ-files
+*.ipw
+*.iws
+*.iml
+*.proj
+
+# Eclipse
+.project
+.settings
+.classpath
+.manager
+
+# Java
+target/
+classes/
