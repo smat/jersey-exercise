@@ -12,7 +12,7 @@
 
     <properties>
         <spring.version>3.0.5.RELEASE</spring.version>
-        <jersey.version>1.8</jersey.version>
+        <jersey.version>1.9.1</jersey.version>
         <jackson.version>1.7.1</jackson.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -61,6 +61,11 @@
             <artifactId>jsr311-api</artifactId>
             <version>1.1.1</version>
         </dependency>
+        <dependency>
+		  	<groupId>com.sun.jersey</groupId>
+		  	<artifactId>jersey-server-linking</artifactId>
+		  	<version>${jersey.version}</version>
+		</dependency>
         <dependency>
             <groupId>com.sun.jersey.contribs</groupId>
             <artifactId>jersey-spring</artifactId>

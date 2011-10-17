@@ -40,7 +40,7 @@ public class AnsattResource {
 	@POST
 	public Response addNew(final AnsattDto ansattDto) {
 		AnsattDto insertedAnsatt = ansattService.insert(ansattDto);
-		URI uri = UriBuilder.fromResource(getClass()).build(insertedAnsatt.getId());
+		URI uri = UriBuilder.fromPath("/{id}").build(insertedAnsatt.getId());
 		return Response.created(uri).entity(insertedAnsatt).build();
 	}
 

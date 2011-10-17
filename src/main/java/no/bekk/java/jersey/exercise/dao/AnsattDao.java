@@ -45,7 +45,6 @@ public class AnsattDao {
 
 	public List<Ansatt> list() {
 		return template.query("select * from ansatt", new AnsattRowMapper());
-
 	}
 
 	public class AnsattRowMapper implements RowMapper<Ansatt> {
