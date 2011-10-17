@@ -5,4 +5,22 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
+	<changeSet id="ansatt_table" author="espen_stian">
+		<createTable tableName="ansatt">
+			<column name="id" autoIncrement="true" type="int">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="fornavn" type="varchar(255)"/>
+			<column name="etternavn" type="varchar(255)"/>
+		</createTable>
+	</changeSet>
+	
+	<changeSet id="insert_data" author="espen_stian">
+		<insert tableName="ansatt">
+			<column name="id">1</column>
+			<column name="fornavn">Stian</column>
+			<column name="etternavn">Mathiassen</column>
+		</insert>
+	</changeSet>
+
 </databaseChangeLog>
