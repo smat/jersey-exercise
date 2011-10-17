@@ -3,6 +3,7 @@ package no.bekk.java.jersey.exercise.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -23,7 +24,7 @@ public class AnsattDao {
 	@Autowired
 	public AnsattDao(final DataSource dataSource) {
 		template = new SimpleJdbcTemplate(dataSource);
-		insert = new SimpleJdbcInsert(dataSource).withTableName("ansatt");
+		insert = new SimpleJdbcInsert(dataSource).withTableName("ansatt").usingGeneratedKeyColumns("id");
 	}
 
 	public Ansatt getById(final long id) {
@@ -40,6 +41,11 @@ public class AnsattDao {
 		ansatt.setId(key.longValue());
 
 		return ansatt;
+	}
+
+	public List<Ansatt> list() {
+		return template.query("select * from ansatt", new AnsattRowMapper());
+
 	}
 
 	public class AnsattRowMapper implements RowMapper<Ansatt> {

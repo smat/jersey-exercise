@@ -7,8 +7,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import no.bekk.java.jersey.exercise.model.Ansatt;
 
 @XmlRootElement(name = "Ansatt")
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class AnsattDto {
+	private long id;
 	public String fornavn;
 	public String etternavn;
 
@@ -17,7 +18,12 @@ public class AnsattDto {
 	}
 
 	public AnsattDto(final Ansatt ansatt) {
+		id = ansatt.getId();
 		fornavn = ansatt.getFornavn();
 		etternavn = ansatt.getEtternavn();
+	}
+
+	public long getId() {
+		return id;
 	}
 }
