@@ -23,4 +23,14 @@
 		</insert>
 	</changeSet>
 
+    <changeSet id="faggruppe_table" author="stian">
+        <createTable tableName="faggruppe">
+            <column name="id" autoIncrement="true" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="navn" type="varchar(255)"/>
+            <column name="faggruppesjefId" type="int"/>
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>
