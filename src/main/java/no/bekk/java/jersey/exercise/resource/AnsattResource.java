@@ -9,12 +9,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 
 import no.bekk.java.jersey.exercise.dto.AnsattDto;
-import no.bekk.java.jersey.exercise.dto.FeilmeldingDto;
-import no.bekk.java.jersey.exercise.model.Feilkode;
 import no.bekk.java.jersey.exercise.service.AnsattService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,10 +46,7 @@ public class AnsattResource {
 	@DELETE
 	@Path("/{id}")
 	public Response delete(@PathParam("id") final long id) {
-		boolean deleted = ansattService.slett(id);
-		if (!deleted) {
-			return Response.status(Status.BAD_REQUEST).entity(new FeilmeldingDto(Feilkode.SLETTING_FEILET)).build();
-		}
+		ansattService.slett(id);
 		return Response.noContent().build();
 	}
 

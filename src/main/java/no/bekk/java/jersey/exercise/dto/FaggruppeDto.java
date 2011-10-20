@@ -15,7 +15,7 @@ import com.sun.jersey.server.linking.Ref.Style;
 @XmlAccessorType(XmlAccessType.FIELD)
 @SuppressWarnings("restriction")
 public class FaggruppeDto {
-	public long id;
+	private long id;
 	public long faggruppesjefId;
 	public String navn;
 

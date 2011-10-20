@@ -7,7 +7,9 @@ import javax.ws.rs.core.Response.Status;
 import no.bekk.java.jersey.exercise.dao.AnsattDao;
 import no.bekk.java.jersey.exercise.dto.AnsattDto;
 import no.bekk.java.jersey.exercise.dto.AnsattListDto;
+import no.bekk.java.jersey.exercise.dto.FeilmeldingDto;
 import no.bekk.java.jersey.exercise.model.Ansatt;
+import no.bekk.java.jersey.exercise.model.Feilkode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -36,8 +38,14 @@ public class AnsattService {
 		}
 	}
 
-	public boolean slett(final long ansattId) {
-		return ansattDao.deleteById(ansattId);
+	public void slett(final long ansattId) {
+		boolean deleted = ansattDao.deleteById(ansattId);
+		if (!deleted) {
+			throw new WebApplicationException(Response
+					.status(Status.NOT_FOUND)
+					.entity(new FeilmeldingDto(Feilkode.SLETTING_FEILET))
+					.build());
+		}
 	}
 
 	public boolean oppdaterFaggruppe(final long ansattId, final long faggruppeId) {
