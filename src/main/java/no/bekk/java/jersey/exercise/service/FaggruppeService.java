@@ -23,4 +23,8 @@ public class FaggruppeService {
     public FaggruppeDto insert(FaggruppeDto faggruppeDto) {
         return new FaggruppeDto(faggruppeDao.insert(new Faggruppe(faggruppeDto)));
     }
-}
+
+    public boolean delete(long id) {
+        return faggruppeDao.delete(id);
+    }
+ }

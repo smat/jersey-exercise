@@ -2,8 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="
-           http://www.springframework.org/schema/beans
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd">
@@ -12,24 +11,6 @@
     <context:annotation-config/>
     <!-- Adds @Component-annoteted classes as beans -->
     <context:component-scan base-package="no.bekk.java.jersey"/>
-
-    <!-- Forwards requests to Jersey. Needed to use spring interceptors with Jersey -->
-    <bean id="jerseyForwarder" class="org.springframework.web.servlet.mvc.ServletForwardingController">
-        <property name="servletName" value="jersey"/>
-    </bean>
-
-    <!-- Needed for SimpleUrlHandlerMapping -->
-    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
-
-    <!-- Map urls to Jersey. Used to combine Spring MVC and Jersey -->
-    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-        <property name="alwaysUseFullPath" value="true"/>
-        <property name="mappings">
-            <props>
-                <prop key="/api/**">jerseyForwarder</prop>
-            </props>
-        </property>
-    </bean>
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="jdbcUrl" value="jdbc:hsqldb:mem:mymemdb"/>

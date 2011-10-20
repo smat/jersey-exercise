@@ -36,4 +36,16 @@ public class FaggruppeResource {
     public Response get(@PathParam("id") long id) {
         return Response.ok(faggruppeService.getById(id)).build();
     }
+
+    @DELETE
+    @Path("/{id}")
+    public Response delete(@PathParam("id") long id) {
+        boolean deleted = faggruppeService.delete(id);
+        if (deleted) {
+            return Response.noContent().build();
+        }
+        else {
+            return Response.status(Response.Status.BAD_REQUEST).entity(null).build();
+        }
+    }
 }

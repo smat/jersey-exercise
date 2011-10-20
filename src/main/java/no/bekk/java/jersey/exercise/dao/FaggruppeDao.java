@@ -40,6 +40,10 @@ public class FaggruppeDao {
         return faggruppe;
     }
 
+    public boolean delete(long id) {
+        return template.update("DELETE FROM faggruppe where id = ?", id) == 1;
+    }
+
     public class FaggruppeRowMapper implements RowMapper<Faggruppe> {
         public Faggruppe mapRow(ResultSet rs, int rowNum) throws SQLException {
             Faggruppe faggruppe = new Faggruppe();
