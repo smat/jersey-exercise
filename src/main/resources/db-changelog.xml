@@ -1,47 +1,109 @@
-<databaseChangeLog
-    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 	<changeSet id="ansatt_table" author="espen_stian">
 		<createTable tableName="ansatt">
 			<column name="id" autoIncrement="true" type="int">
-				<constraints primaryKey="true" nullable="false"/>
+				<constraints primaryKey="true" nullable="false" />
 			</column>
-			<column name="fornavn" type="varchar(255)"/>
-			<column name="etternavn" type="varchar(255)"/>
-            <column name="faggruppeId" type="int">
-                <constraints nullable="false"/>
-            </column>
+			<column name="fornavn" type="varchar(255)" />
+			<column name="etternavn" type="varchar(255)" />
+			<column name="faggruppeId" type="int" />
 		</createTable>
 	</changeSet>
 
-    <changeSet id="faggruppe_table" author="stian">
-        <createTable tableName="faggruppe">
-            <column name="id" autoIncrement="true" type="int">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="navn" type="varchar(255)"/>
-            <column name="faggruppesjefId" type="int"/>
-        </createTable>
-    </changeSet>
+	<changeSet id="faggruppe_table" author="stian">
+		<createTable tableName="faggruppe">
+			<column name="id" autoIncrement="true" type="int">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="navn" type="varchar(255)" />
+			<column name="faggruppesjefId" type="int">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
 
-    <changeSet id="insert_data" author="espen_stian">
-        <insert tableName="ansatt">
-            <column name="id">1</column>
-            <column name="fornavn">Stian</column>
-            <column name="etternavn">Mathiassen</column>
-            <column name="faggruppeId">1</column>
-        </insert>
-    </changeSet>
+	<!-- DEFAULT DATA -->
 
-    <changeSet id="insert_data_faggruppe" author="espen_stian">
+	<changeSet id="ansatt-stian" author="espen">
+		<insert tableName="ansatt">
+			<column name="id">1</column>
+			<column name="fornavn">Stian</column>
+			<column name="etternavn">Mathiassen</column>
+			<column name="faggruppeId">1</column>
+		</insert>
+	</changeSet>
+	<changeSet id="ansatt-espen" author="espen">
+		<insert tableName="ansatt">
+			<column name="id">2</column>
+			<column name="fornavn">Espen Herseth</column>
+			<column name="etternavn">Halvorsen</column>
+			<column name="faggruppeId">1</column>
+		</insert>
+	</changeSet>
+	<changeSet id="ansatt-janniche" author="espen">
+		<insert tableName="ansatt">
+			<column name="id">3</column>
+			<column name="fornavn">Janniche</column>
+			<column name="etternavn">Haugen</column>
+			<column name="faggruppeId">1</column>
+		</insert>
+	</changeSet>
+	<changeSet id="ansatt-per" author="espen">
+		<insert tableName="ansatt">
+			<column name="id">4</column>
+			<column name="fornavn">Per</column>
+			<column name="etternavn">Nordmann</column>
+			<column name="faggruppeId">3</column>
+		</insert>
+	</changeSet>
+	<changeSet id="ansatt-truls" author="espen">
+		<insert tableName="ansatt">
+			<column name="id">5</column>
+			<column name="fornavn">Truls</column>
+			<column name="etternavn">Nordmann</column>
+			<column name="faggruppeId">4</column>
+		</insert>
+	</changeSet>
+	<changeSet id="ansatt-gunnar" author="espen">
+		<insert tableName="ansatt">
+			<column name="id">6</column>
+			<column name="fornavn">Gunnar</column>
+			<column name="etternavn">Nordmann</column>
+			<column name="faggruppeId">4</column>
+		</insert>
+	</changeSet>
+	<changeSet id="ansatt-lokoarne" author="espen">
+		<insert tableName="ansatt">
+			<column name="id">7</column>
+			<column name="fornavn">Loko</column>
+			<column name="etternavn">Gorilla</column>
+			<column name="faggruppeId">3</column>
+		</insert>
+	</changeSet>
+	<changeSet id="faggruppe-java" author="espen">
 		<insert tableName="faggruppe">
 			<column name="id">1</column>
 			<column name="navn">Java</column>
-			<column name="faggruppesjefId">1</column>
+			<column name="faggruppesjefId">3</column>
+		</insert>
+	</changeSet>
+	<changeSet id="faggruppe-net" author="espen">
+		<insert tableName="faggruppe">
+			<column name="id">2</column>
+			<column name="navn">.NET</column>
+			<column name="faggruppesjefId">5</column>
+		</insert>
+	</changeSet>
+	<changeSet id="faggruppe-rabiatespraak" author="espen">
+		<insert tableName="faggruppe">
+			<column name="id">3</column>
+			<column name="navn">Den o' store faggruppen for rabiate og radikale
+				hippiespråk!!1</column>
+			<column name="faggruppesjefId">7</column>
 		</insert>
 	</changeSet>
 
