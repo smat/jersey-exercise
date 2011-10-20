@@ -46,13 +46,10 @@ public class AnsattResource {
 	@DELETE
 	@Path("/{id}")
 	public Response delete(@PathParam("id") final long id) {
-		ansattService.slett(id);
+		// Her mangler det noe
 		return Response.noContent().build();
 	}
 
-	@GET
-	@Path("/{id}")
-	public Response get(@PathParam("id") final long id) {
-		return Response.ok(ansattService.hent(id)).build();
-	}
+	// Her kan du legge på en metode :)
+
 }
