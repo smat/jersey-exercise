@@ -65,6 +65,7 @@ public class AnsattDao {
 			ansatt.setId(rs.getLong("ID"));
 			ansatt.setFornavn(rs.getString("FORNAVN"));
 			ansatt.setEtternavn(rs.getString("ETTERNAVN"));
+            ansatt.setFaggruppeId(rs.getLong("FAGGRUPPEID"));
 			return ansatt;
 		}
 	}

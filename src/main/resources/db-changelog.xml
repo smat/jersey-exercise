@@ -12,15 +12,10 @@
 			</column>
 			<column name="fornavn" type="varchar(255)"/>
 			<column name="etternavn" type="varchar(255)"/>
+            <column name="faggruppeId" type="int">
+                <constraints nullable="false"/>
+            </column>
 		</createTable>
-	</changeSet>
-	
-	<changeSet id="insert_data" author="espen_stian">
-		<insert tableName="ansatt">
-			<column name="id">1</column>
-			<column name="fornavn">Stian</column>
-			<column name="etternavn">Mathiassen</column>
-		</insert>
 	</changeSet>
 
     <changeSet id="faggruppe_table" author="stian">
@@ -31,6 +26,15 @@
             <column name="navn" type="varchar(255)"/>
             <column name="faggruppesjefId" type="int"/>
         </createTable>
+    </changeSet>
+
+    <changeSet id="insert_data" author="espen_stian">
+        <insert tableName="ansatt">
+            <column name="id">1</column>
+            <column name="fornavn">Stian</column>
+            <column name="etternavn">Mathiassen</column>
+            <column name="faggruppeId">1</column>
+        </insert>
     </changeSet>
 
     <changeSet id="insert_data_faggruppe" author="espen_stian">

@@ -6,14 +6,16 @@ public class Ansatt {
 	Long id;
 	String fornavn;
 	String etternavn;
+    Long faggruppeId;
 
 	public Ansatt(final AnsattDto ansattDto) {
 		fornavn = ansattDto.fornavn;
 		etternavn = ansattDto.etternavn;
+        faggruppeId = ansattDto.faggruppeId;
 	}
 
 	public Ansatt() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Long getId() {
@@ -40,4 +42,11 @@ public class Ansatt {
 		this.etternavn = etternavn;
 	}
 
+    public Long getFaggruppeId() {
+        return faggruppeId;
+    }
+
+    public void setFaggruppeId(Long faggruppeId) {
+        this.faggruppeId = faggruppeId;
+    }
 }

@@ -5,6 +5,7 @@ import java.net.URI;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import no.bekk.java.jersey.exercise.model.Ansatt;
 
@@ -18,11 +19,12 @@ public class AnsattDto {
 	private long id;
 	public String fornavn;
 	public String etternavn;
+    public Long faggruppeId;
 
 	@Ref(value = "ansatt/{id}", style = Style.ABSOLUTE)
 	public URI link;
 
-	public AnsattDto() {
+    public AnsattDto() {
 
 	}
 
@@ -30,6 +32,7 @@ public class AnsattDto {
 		id = ansatt.getId();
 		fornavn = ansatt.getFornavn();
 		etternavn = ansatt.getEtternavn();
+        faggruppeId = ansatt.getFaggruppeId();
 	}
 
 	public long getId() {
