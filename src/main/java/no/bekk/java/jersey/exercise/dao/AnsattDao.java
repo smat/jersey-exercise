@@ -32,11 +32,7 @@ public class AnsattDao {
 	}
 
 	public Ansatt getById(final long id) {
-		try {
-			return template.queryForObject("select * from ansatt where id = ?", new AnsattRowMapper(), id);
-		} catch (EmptyResultDataAccessException e) {
-			throw new WebApplicationException(Response.status(Status.NOT_FOUND).build());
-		}
+        return template.queryForObject("select * from ansatt where id = ?", new AnsattRowMapper(), id);
 	}
 
 	public boolean deleteById(final long id) {

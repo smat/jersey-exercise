@@ -3,12 +3,7 @@ package no.bekk.java.jersey.exercise.resource;
 import java.net.URI;
 import java.util.List;
 
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
@@ -20,6 +15,7 @@ import no.bekk.java.jersey.exercise.service.AnsattService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
 
 @Path("/ansatt")
@@ -61,6 +57,10 @@ public class AnsattResource {
 	@GET
 	@Path("/{id}")
 	public Response get(@PathParam("id") final long id) {
-		return Response.ok(ansattService.getById(id)).build();
+        try {
+    		return Response.ok(ansattService.getById(id)).build();
+        } catch (EmptyResultDataAccessException e) {
+                throw new WebApplicationException(Response.status(Status.NOT_FOUND).build());
+        }
 	}
 }

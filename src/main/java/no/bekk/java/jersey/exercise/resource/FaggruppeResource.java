@@ -4,6 +4,7 @@ import no.bekk.java.jersey.exercise.dto.FaggruppeDto;
 import no.bekk.java.jersey.exercise.service.FaggruppeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
@@ -39,7 +40,11 @@ public class FaggruppeResource {
     @GET
     @Path("/{id}")
     public Response get(@PathParam("id") long id) {
-        return Response.ok(faggruppeService.getById(id)).build();
+        try {
+            return Response.ok(faggruppeService.getById(id)).build();
+        } catch (EmptyResultDataAccessException e) {
+            throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND).build());
+        }
     }
 
     @DELETE
