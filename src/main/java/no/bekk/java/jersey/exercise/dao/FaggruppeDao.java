@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 
 @Repository
 public class FaggruppeDao {
@@ -38,6 +39,10 @@ public class FaggruppeDao {
         faggruppe.setId(key.longValue());
 
         return faggruppe;
+    }
+
+    public List<Faggruppe> list() {
+        return template.query("SELECT * FROM faggruppe", new FaggruppeRowMapper());
     }
 
     public boolean delete(long id) {

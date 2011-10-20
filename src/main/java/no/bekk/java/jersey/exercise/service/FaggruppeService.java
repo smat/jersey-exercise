@@ -6,6 +6,9 @@ import no.bekk.java.jersey.exercise.model.Faggruppe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class FaggruppeService {
 
@@ -22,6 +25,14 @@ public class FaggruppeService {
 
     public FaggruppeDto insert(FaggruppeDto faggruppeDto) {
         return new FaggruppeDto(faggruppeDao.insert(new Faggruppe(faggruppeDto)));
+    }
+
+    public List<FaggruppeDto> getAll() {
+        List<FaggruppeDto> dtos = new ArrayList<FaggruppeDto> ();
+        for (Faggruppe faggruppe : faggruppeDao.list()) {
+            dtos.add(new FaggruppeDto(faggruppe));
+        }
+        return dtos;
     }
 
     public boolean delete(long id) {

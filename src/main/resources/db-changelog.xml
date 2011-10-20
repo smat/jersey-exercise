@@ -33,4 +33,12 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="insert_data_faggruppe" author="espen_stian">
+		<insert tableName="faggruppe">
+			<column name="id">1</column>
+			<column name="navn">Java</column>
+			<column name="faggruppesjefId">1</column>
+		</insert>
+	</changeSet>
+
 </databaseChangeLog>
