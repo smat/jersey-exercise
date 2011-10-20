@@ -1,4 +1,4 @@
-package no.bekk.java.jersey.exercise.dto;
+package no.bekk.java.jersey.exercise.model;
 
 public enum Feilkode {
 	SLETTING_FEILET("Kunne ikke slette ressursen");

@@ -6,10 +6,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.sql.DataSource;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import no.bekk.java.jersey.exercise.model.Ansatt;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
@@ -28,7 +32,11 @@ public class AnsattDao {
 	}
 
 	public Ansatt getById(final long id) {
-		return template.queryForObject("select * from ansatt where id = ?", new AnsattRowMapper(), id);
+		try {
+			return template.queryForObject("select * from ansatt where id = ?", new AnsattRowMapper(), id);
+		} catch (EmptyResultDataAccessException e) {
+			throw new WebApplicationException(Response.status(Status.NOT_FOUND).build());
+		}
 	}
 
 	public boolean deleteById(final long id) {

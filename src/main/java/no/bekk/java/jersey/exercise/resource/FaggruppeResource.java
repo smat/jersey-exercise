@@ -13,8 +13,8 @@ import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 
 import no.bekk.java.jersey.exercise.dto.FaggruppeDto;
-import no.bekk.java.jersey.exercise.dto.Feilkode;
 import no.bekk.java.jersey.exercise.dto.FeilmeldingDto;
+import no.bekk.java.jersey.exercise.model.Feilkode;
 import no.bekk.java.jersey.exercise.service.FaggruppeService;
 
 import org.springframework.beans.factory.annotation.Autowired;

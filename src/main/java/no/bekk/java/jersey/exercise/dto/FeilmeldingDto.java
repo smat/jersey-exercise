@@ -4,6 +4,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import no.bekk.java.jersey.exercise.model.Feilkode;
+
 @SuppressWarnings("restriction")
 @XmlRootElement(name = "Feilmelding")
 @XmlAccessorType(XmlAccessType.PROPERTY)
