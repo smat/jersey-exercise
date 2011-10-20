@@ -36,12 +36,12 @@ public class AnsattResource {
 
 	@GET
 	public Response list() {
-		return Response.ok(ansattService.getAll()).build();
+		return Response.ok(ansattService.hentAlle()).build();
 	}
 
 	@POST
 	public Response addNew(final AnsattDto ansattDto) {
-		AnsattDto insertedAnsatt = ansattService.insert(ansattDto);
+		AnsattDto insertedAnsatt = ansattService.opprettNy(ansattDto);
 		URI uri = UriBuilder.fromPath("/{id}").build(insertedAnsatt.getId());
 		return Response.created(uri).entity(insertedAnsatt).build();
 	}
@@ -49,7 +49,7 @@ public class AnsattResource {
 	@DELETE
 	@Path("/{id}")
 	public Response delete(@PathParam("id") final long id) {
-		boolean deleted = ansattService.deleteById(id);
+		boolean deleted = ansattService.slett(id);
 		if (!deleted) {
 			return Response.status(Status.BAD_REQUEST).entity(new FeilmeldingDto(Feilkode.SLETTING_FEILET)).build();
 		}
@@ -59,6 +59,6 @@ public class AnsattResource {
 	@GET
 	@Path("/{id}")
 	public Response get(@PathParam("id") final long id) {
-		return Response.ok(ansattService.getById(id)).build();
+		return Response.ok(ansattService.hent(id)).build();
 	}
 }

@@ -29,7 +29,11 @@ public class FaggruppeDao {
         return template.queryForObject("SELECT * FROM faggruppe WHERE id = ?", new FaggruppeRowMapper(), id);
     }
 
-    public Faggruppe insert(Faggruppe faggruppe) {
+    public boolean deleteById(long id) {
+	    return template.update("DELETE FROM faggruppe where id = ?", id) == 1;
+	}
+
+	public Faggruppe insert(Faggruppe faggruppe) {
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("NAVN", faggruppe.getNavn());
         map.put("FAGGRUPPESJEFID", faggruppe.getFagruppesjefId());
@@ -43,10 +47,6 @@ public class FaggruppeDao {
 
     public List<Faggruppe> list() {
         return template.query("SELECT * FROM faggruppe", new FaggruppeRowMapper());
-    }
-
-    public boolean delete(long id) {
-        return template.update("DELETE FROM faggruppe where id = ?", id) == 1;
     }
 
     public class FaggruppeRowMapper implements RowMapper<Faggruppe> {

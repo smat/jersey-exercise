@@ -3,26 +3,26 @@ package no.bekk.java.jersey.exercise.model;
 import no.bekk.java.jersey.exercise.dto.AnsattDto;
 
 public class Ansatt {
-	Long id;
+	long id;
 	String fornavn;
 	String etternavn;
-    Long faggruppeId;
+	long faggruppeId;
 
 	public Ansatt(final AnsattDto ansattDto) {
 		fornavn = ansattDto.fornavn;
 		etternavn = ansattDto.etternavn;
-        faggruppeId = ansattDto.faggruppeId;
+		faggruppeId = ansattDto.faggruppeId;
 	}
 
 	public Ansatt() {
 
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(final Long id) {
+	public void setId(final long id) {
 		this.id = id;
 	}
 
@@ -42,11 +42,11 @@ public class Ansatt {
 		this.etternavn = etternavn;
 	}
 
-    public Long getFaggruppeId() {
-        return faggruppeId;
-    }
+	public long getFaggruppeId() {
+		return faggruppeId;
+	}
 
-    public void setFaggruppeId(Long faggruppeId) {
-        this.faggruppeId = faggruppeId;
-    }
+	public void setFaggruppeId(final long faggruppeId) {
+		this.faggruppeId = faggruppeId;
+	}
 }

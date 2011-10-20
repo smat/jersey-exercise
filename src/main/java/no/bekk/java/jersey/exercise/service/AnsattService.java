@@ -23,28 +23,28 @@ public class AnsattService {
 		this.ansattDao = ansattDao;
 	}
 
-	public AnsattDto insert(final AnsattDto ansattDto) {
+	public AnsattDto opprettNy(final AnsattDto ansattDto) {
 		Ansatt ansatt = new Ansatt(ansattDto);
 		return new AnsattDto(ansattDao.insert(ansatt));
 	}
 
-	public AnsattDto getById(final long id) {
+	public AnsattDto hent(final long ansattId) {
 		try {
-			return new AnsattDto(ansattDao.getById(id));
+			return new AnsattDto(ansattDao.getById(ansattId));
 		} catch (EmptyResultDataAccessException e) {
 			throw new WebApplicationException(Response.status(Status.NOT_FOUND).build());
 		}
 	}
 
-	public boolean deleteById(final long id) {
-		return ansattDao.deleteById(id);
+	public boolean slett(final long ansattId) {
+		return ansattDao.deleteById(ansattId);
 	}
 
-    public boolean updateFaggruppeId(long ansattId, long faggruppeId) {
-        return ansattDao.updateFaggruppe(ansattId, faggruppeId);
-    }
-    
-	public AnsattListDto getAll() {
+	public boolean oppdaterFaggruppe(final long ansattId, final long faggruppeId) {
+		return ansattDao.updateFaggruppe(ansattId, faggruppeId);
+	}
+
+	public AnsattListDto hentAlle() {
 		AnsattListDto list = new AnsattListDto();
 		for (Ansatt ansatt : ansattDao.list()) {
 			list.ansatt.add(new AnsattDto(ansatt));

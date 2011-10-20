@@ -46,13 +46,13 @@ public class AnsattDao {
 		return ansatt;
 	}
 
-    public boolean updateFaggruppe(long ansattId, long faggruppeId) {
-        return template.update("UPDATE ansatt SET faggruppeId = ? WHERE id = ?", faggruppeId, ansattId) == 1;
-    }
-
-	public List<Ansatt> list() {
+    public List<Ansatt> list() {
 		return template.query("select * from ansatt", new AnsattRowMapper());
 	}
+
+	public boolean updateFaggruppe(long ansattId, long faggruppeId) {
+        return template.update("UPDATE ansatt SET faggruppeId = ? WHERE id = ?", faggruppeId, ansattId) == 1;
+    }
 
 	public class AnsattRowMapper implements RowMapper<Ansatt> {
 		public Ansatt mapRow(final ResultSet rs, final int rowNum) throws SQLException {
