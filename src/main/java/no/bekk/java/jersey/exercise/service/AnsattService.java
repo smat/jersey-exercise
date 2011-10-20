@@ -40,6 +40,10 @@ public class AnsattService {
 		return ansattDao.deleteById(id);
 	}
 
+    public boolean updateFaggruppeId(long ansattId, long faggruppeId) {
+        return ansattDao.updateFaggruppe(ansattId, faggruppeId);
+    }
+    
 	public AnsattListDto getAll() {
 		AnsattListDto list = new AnsattListDto();
 		for (Ansatt ansatt : ansattDao.list()) {

@@ -1,19 +1,17 @@
 package no.bekk.java.jersey.exercise.dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-
-import javax.sql.DataSource;
-
 import no.bekk.java.jersey.exercise.model.Ansatt;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
 
 @Repository
 public class AnsattDao {
@@ -47,6 +45,10 @@ public class AnsattDao {
 
 		return ansatt;
 	}
+
+    public boolean updateFaggruppe(long ansattId, long faggruppeId) {
+        return template.update("UPDATE ansatt SET faggruppeId = ? WHERE id = ?", faggruppeId, ansattId) == 1;
+    }
 
 	public List<Ansatt> list() {
 		return template.query("select * from ansatt", new AnsattRowMapper());
