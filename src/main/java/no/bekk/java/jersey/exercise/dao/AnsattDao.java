@@ -6,14 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.sql.DataSource;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 
 import no.bekk.java.jersey.exercise.model.Ansatt;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
@@ -32,7 +28,7 @@ public class AnsattDao {
 	}
 
 	public Ansatt getById(final long id) {
-        return template.queryForObject("select * from ansatt where id = ?", new AnsattRowMapper(), id);
+		return template.queryForObject("select * from ansatt where id = ?", new AnsattRowMapper(), id);
 	}
 
 	public boolean deleteById(final long id) {
@@ -43,6 +39,7 @@ public class AnsattDao {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("FORNAVN", ansatt.getFornavn());
 		map.put("ETTERNAVN", ansatt.getEtternavn());
+		map.put("FAGGRUPPEID", ansatt.getFaggruppeId());
 
 		Number key = insert.executeAndReturnKey(map);
 
@@ -61,7 +58,7 @@ public class AnsattDao {
 			ansatt.setId(rs.getLong("ID"));
 			ansatt.setFornavn(rs.getString("FORNAVN"));
 			ansatt.setEtternavn(rs.getString("ETTERNAVN"));
-            ansatt.setFaggruppeId(rs.getLong("FAGGRUPPEID"));
+			ansatt.setFaggruppeId(rs.getLong("FAGGRUPPEID"));
 			return ansatt;
 		}
 	}
