@@ -5,6 +5,7 @@ import java.util.List;
 
 import no.bekk.java.jersey.exercise.dao.AnsattDao;
 import no.bekk.java.jersey.exercise.dto.AnsattDto;
+import no.bekk.java.jersey.exercise.dto.AnsattListDto;
 import no.bekk.java.jersey.exercise.model.Ansatt;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +34,12 @@ public class AnsattService {
 		return ansattDao.deleteById(id);
 	}
 
-	public List<AnsattDto> getAll() {
-		List<AnsattDto> ansatte = new ArrayList<AnsattDto>();
-		for (Ansatt ansatt : ansattDao.list()) {
-			ansatte.add(new AnsattDto(ansatt));
+	public AnsattListDto getAll() {
+        AnsattListDto list = new AnsattListDto();
+        for (Ansatt ansatt : ansattDao.list()) {
+			list.ansatt.add(new AnsattDto(ansatt));
 		}
-		return ansatte;
+		return list;
 	}
 
 }

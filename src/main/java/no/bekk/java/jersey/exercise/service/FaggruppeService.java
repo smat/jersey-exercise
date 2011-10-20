@@ -2,6 +2,7 @@ package no.bekk.java.jersey.exercise.service;
 
 import no.bekk.java.jersey.exercise.dao.FaggruppeDao;
 import no.bekk.java.jersey.exercise.dto.FaggruppeDto;
+import no.bekk.java.jersey.exercise.dto.FaggruppeListDto;
 import no.bekk.java.jersey.exercise.model.Faggruppe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,12 +28,12 @@ public class FaggruppeService {
         return new FaggruppeDto(faggruppeDao.insert(new Faggruppe(faggruppeDto)));
     }
 
-    public List<FaggruppeDto> getAll() {
-        List<FaggruppeDto> dtos = new ArrayList<FaggruppeDto> ();
+    public FaggruppeListDto getAll() {
+        FaggruppeListDto list = new FaggruppeListDto();
         for (Faggruppe faggruppe : faggruppeDao.list()) {
-            dtos.add(new FaggruppeDto(faggruppe));
+            list.faggruppe.add(new FaggruppeDto(faggruppe));
         }
-        return dtos;
+        return list;
     }
 
     public boolean delete(long id) {
