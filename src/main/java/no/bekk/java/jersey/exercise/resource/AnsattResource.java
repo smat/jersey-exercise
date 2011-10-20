@@ -33,8 +33,7 @@ public class AnsattResource {
 
 	@GET
 	public Response list() {
-		List<AnsattDto> ansatte = ansattService.getAll();
-		return Response.ok(ansatte).build();
+        return Response.ok(ansattService.getAll()).build();
 	}
 
 	@POST
