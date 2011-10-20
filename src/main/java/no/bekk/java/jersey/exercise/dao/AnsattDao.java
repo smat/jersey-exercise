@@ -31,6 +31,10 @@ public class AnsattDao {
 		return template.queryForObject("select * from ansatt where id = ?", new AnsattRowMapper(), id);
 	}
 
+	public boolean deleteById(final long id) {
+		return template.update("delete from ansatt where id = ?", id) == 1;
+	}
+
 	public Ansatt insert(final Ansatt ansatt) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("FORNAVN", ansatt.getFornavn());

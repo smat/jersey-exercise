@@ -3,15 +3,19 @@ package no.bekk.java.jersey.exercise.resource;
 import java.net.URI;
 import java.util.List;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 
 import no.bekk.java.jersey.exercise.dto.AnsattDto;
+import no.bekk.java.jersey.exercise.dto.Feilkode;
+import no.bekk.java.jersey.exercise.dto.FeilmeldingDto;
 import no.bekk.java.jersey.exercise.service.AnsattService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +46,16 @@ public class AnsattResource {
 		AnsattDto insertedAnsatt = ansattService.insert(ansattDto);
 		URI uri = UriBuilder.fromPath("/{id}").build(insertedAnsatt.getId());
 		return Response.created(uri).entity(insertedAnsatt).build();
+	}
+
+	@DELETE
+	@Path("/{id}")
+	public Response delete(@PathParam("id") final long id) {
+		boolean deleted = ansattService.deleteById(id);
+		if (!deleted) {
+			return Response.status(Status.BAD_REQUEST).entity(new FeilmeldingDto(Feilkode.SLETTING_FEILET)).build();
+		}
+		return Response.noContent().build();
 	}
 
 	@GET

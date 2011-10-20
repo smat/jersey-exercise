@@ -29,6 +29,10 @@ public class AnsattService {
 		return new AnsattDto(ansattDao.getById(id));
 	}
 
+	public boolean deleteById(final long id) {
+		return ansattDao.deleteById(id);
+	}
+
 	public List<AnsattDto> getAll() {
 		List<AnsattDto> ansatte = new ArrayList<AnsattDto>();
 		for (Ansatt ansatt : ansattDao.list()) {
